@@ -1,0 +1,89 @@
+:root {
+    --fuentePrincipal: 'Mochiy Pop P One', sans-serif;
+}
+
+body {
+    width: 100%;
+    font-family: var(--fuentePrincipal);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 3rem 0;
+}
+
+.centrar {
+    display: flex;
+    justify-content: center;
+}
+
+.f-g {
+    background-color: grey;
+}
+
+.input {
+    width: 500px;
+    height: 140px;
+    background: rgb(34, 140, 195);
+    background: linear-gradient(0deg, rgba(34, 140, 195, 0.5998774509803921) 0%, rgba(45, 238, 253, 0.5970763305322129) 100%);
+    border-radius: 10px;
+    align-items: center;
+    padding: .5rem;
+}
+
+
+
+.input input {
+    width: 450px;
+    margin: auto;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.enviar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.enviar span {
+    margin: auto 2rem;
+}
+
+
+button {
+    margin: 10px 0 20px 20px;
+    box-shadow: 0px 1px 0px 0px #f0f7fa;
+    background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+    background-color: #33bdef;
+    border-radius: 6px;
+    border: 1px solid #057fd0;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px -1px 0px #5b6178;
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+    background-color: #019ad2;
+}
+
+button:active {
+    position: relative;
+    top: 1px;
+}
+
+.fecha {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#fecha, #hora {
+    margin: .1rem 1rem;
+}
