@@ -99,6 +99,81 @@ button:active {
     background-color: #019ad2;
     border-radius: 10px;
     width: 500px;
-    height: 90px;
+    height: auto;
+    min-height: 90px;
     margin: 1rem;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tarea p {
+    margin: 0 0 1rem 0;
+
+}
+
+.inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hora_fecha {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 1rem;
+}
+
+.hora_fecha span {
+    font-size: .7rem;
+    margin: 0 0.2rem;
+
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+
+
+}
+
+.botones div {
+    margin: 0 3px;
+    /* background-color: rgb(73, 71, 71); */
+    width: 3rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 1px 0px 0px #f0f7fa;
+    background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+    background-color: #33bdef;
+    border-radius: 6px;
+    border: 1px solid #057fd0;
+    /* display: inline-block; */
+
+}
+
+.botones div span {
+    font-size: 2rem;
+    cursor: pointer;
+
+}
+
+
+
+.borrar {
+    color: red;
+
+}
+
+.editar {
+    color: green;
+}
+
+.completado {
+    color: #ed00f1;
 }

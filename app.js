@@ -48,14 +48,28 @@ tareas[tarea.id] = tarea;
 console.log(tareas);
  input.value = '';
 
- crearDiv();
+ crearDiv(tarea.texto);
 }
 
-function crearDiv(){
+function crearDiv(textTarea){
     const cajaTareas = document.querySelector('#tareas')
     const divTarea = document.createElement('div');
+    const textoTarea = document.createElement('p');
+    const divInferior = document.createElement('div')
+    const hora_fecha = document.createElement('div');
+    const spanHoraTarea = document.createElement('span');
+
+
+    divInferior.classList.add('inferior');
     divTarea.classList.add('tarea')
     cajaTareas.appendChild(divTarea);
+    divTarea.appendChild(textoTarea);
+    textoTarea.textContent = textTarea;
+    divTarea.appendChild(divInferior);
+    hora_fecha.classList.add('hora_fecha');
+    divInferior.appendChild(hora_fecha);
+    spanHoraTarea.setAttribute('id', 'hora_tarea');
+    hora_fecha.appendChild(spanHoraTarea);
     
 }
 

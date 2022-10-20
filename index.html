@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap" rel="stylesheet">
@@ -38,9 +40,61 @@
     <div class="tareas centrar">
         <h2>Tareas Pendientes</h2>
         <div id="tareas">
+            <div class="tarea">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A inventore suscipit perspiciatis nesciunt
+                    cumque dolores.
 
+                </p>
+                <div class="inferior">
+                    <div class="hora_fecha">
+                        <span id="hora_tarea">22:00</span>
+                        <span id="fecha_tarea">17/10/1983</span>
+                    </div>
+                    <div class="botones">
+                        <div id="boton_borrar"><abbr title="Borrar Tarea"><span
+                                    class="borrar material-symbols-outlined">
+                                    delete
+                                </span></abbr></div>
+                        <div id="boton_editar"><abbr title="Editar Tarea"><span
+                                    class="editar material-symbols-outlined">
+                                    edit
+                                </span></abbr></div>
+                        <div id="boton_completado"><abbr title="Completar Tarea"><span
+                                    class="completado material-symbols-outlined">
+                                    event_available
+                                </span></abbr></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <template>
+        <div class="tarea">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A inventore suscipit perspiciatis nesciunt
+                cumque dolores.
+
+            </p>
+            <div class="inferior">
+                <div class="hora_fecha">
+                    <span id="hora_tarea">22:00</span>
+                    <span id="fecha_tarea">17/10/1983</span>
+                </div>
+                <div class="botones">
+                    <div id="boton_borrar"><abbr title="Borrar Tarea"><span class="borrar material-symbols-outlined">
+                                delete
+                            </span></abbr></div>
+                    <div id="boton_editar"><abbr title="Editar Tarea"><span class="editar material-symbols-outlined">
+                                edit
+                            </span></abbr></div>
+                    <div id="boton_completado"><abbr title="Completar Tarea"><span
+                                class="completado material-symbols-outlined">
+                                event_available
+                            </span></abbr></div>
+                </div>
+            </div>
+        </div>
+    </template>
 
 
 
