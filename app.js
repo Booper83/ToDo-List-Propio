@@ -4,7 +4,7 @@ const boton = document.querySelector('#boton');
 
 boton.addEventListener('click', function(e){
     e.preventDefault();
-    console.log(hora.textContent);
+    console.log(hora.textContent, fecha.textContent);
 })
 
 function ponerHora(){
@@ -18,8 +18,6 @@ setInterval(() => {
     ponerHora();
 }, 1000);
 
-console.log(boton);
 
-console.log('Hola Mundo!');
 
 // console.log(moment());
