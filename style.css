@@ -94,7 +94,11 @@ button:active {
 }
 
 .tarea {
-    background-color: grey;
+    /* background-color: grey; */
+    background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+    background-color: #019ad2;
+    border-radius: 10px;
     width: 500px;
     height: 90px;
+    margin: 1rem;
 }
