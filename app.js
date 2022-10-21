@@ -52,7 +52,7 @@ idTarea = tarea.id;
 
 tareas[tarea.id] = tarea;
 
-// console.log(tareas);
+console.log(tareas);
  input.value = '';
 
  crearDiv(tarea.texto, tarea.hora, tarea.fecha, tarea.id);
@@ -166,5 +166,10 @@ function completarTarea(id){
 }
 
 function borrarTarea(id){
-    console.log(`borrando tarea con el id ${id}`);
+    const tareaBorrada = tareas[id].splice(id-1,id);
+    
+    const tareaBorrar = document.querySelectorAll('.tarea')[id-1];
+    console.log(tareaBorrar);
+console.log(tareas[1]);
+
 }
