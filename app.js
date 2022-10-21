@@ -97,7 +97,7 @@ function crearDiv(textTarea, horatarea, fechatarea,tareaid){
     divBotones.classList.add('botones')
     divInferior.appendChild(divBotones);
 
-    divBotonBorrar.setAttribute('id', 'boton_borrar');
+    divBotonBorrar.classList.add('boton_azul');
     divBotones.appendChild(divBotonBorrar);
     divBotonBorrar.appendChild(abbrBorrar);
     spanBorrar.classList.add('borrar', 'material-symbols-outlined');
@@ -105,7 +105,7 @@ function crearDiv(textTarea, horatarea, fechatarea,tareaid){
     spanBorrar.textContent = 'delete'
     abbrBorrar.appendChild(spanBorrar);
 
-    divBotonEditar.setAttribute('id', 'boton_editar');
+    divBotonEditar.classList.add('boton_azul');
     divBotones.appendChild(divBotonEditar);
     divBotonEditar.appendChild(abbrEditar);
     spanEditar.classList.add('editar', 'material-symbols-outlined');
@@ -113,7 +113,7 @@ function crearDiv(textTarea, horatarea, fechatarea,tareaid){
     spanEditar.textContent = 'edit'
     abbrEditar.appendChild(spanEditar);
     
-    divBotonCompletado.setAttribute('id', 'boton_completado');
+    divBotonCompletado.classList.add('boton_azul');
     divBotones.appendChild(divBotonCompletado);
     divBotonCompletado.appendChild(abbrCompletado);
     spanCompletado.classList.add('Completar', 'material-symbols-outlined');
@@ -131,30 +131,40 @@ function crearConst(id){
     // console.log(botonCompletar);
     botonCompletar.addEventListener('click', function(e){
         // console.log(e.target.id, id);
-        completarTarea(e.target.id, id);
+        completarTarea(id);
+    })
+
+    botonBorrar.addEventListener('click', function (e){
+        // console.log(e.target);
+        borrarTarea(id);
     })
 }
 
-function completarTarea(eid, id){
+function completarTarea(id){
     // console.log(`Cambiando color con el id${id}`);
     const divTarea = document.querySelectorAll('.tarea')[id-1];
-    console.log(divTarea);
+    // console.log(divTarea);
     
     if(divTarea.classList.contains('tarea-azul')){
         divTarea.classList.remove('tarea-azul')
         divTarea.classList.add('tarea-verde');
+        divTarea.lastChild.lastChild.lastChild.classList.remove('boton_azul');
+        divTarea.lastChild.lastChild.lastChild.classList.add('boton_verde');
+        console.log(divTarea.lastChild.lastChild.lastChild);
        
         console.log('tiene azul');
-        return
+        return;
     };
     if (divTarea.classList.contains('tarea-verde')) {
         divTarea.classList.remove('tarea-verde')
         divTarea.classList.add('tarea-azul');
+        divTarea.lastChild.lastChild.lastChild.classList.remove('boton_verde');
+        divTarea.lastChild.lastChild.lastChild.classList.add('boton_azul');
         console.log('tiene verde');
         return;
-    };
+    };    
+}
 
-    
-    
-    
+function borrarTarea(id){
+    console.log(`borrando tarea con el id ${id}`);
 }
