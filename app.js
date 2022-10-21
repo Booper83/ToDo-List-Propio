@@ -2,7 +2,7 @@ const hora = document.querySelector('#hora');
 const fecha = document.querySelector('#fecha');
 const boton = document.querySelector('#boton');
 const input = document.querySelector('#input');
-const botonCompletar = document.querySelectorAll('#boton_completado')
+
 
 
 
@@ -52,13 +52,13 @@ idTarea = tarea.id;
 
 tareas[tarea.id] = tarea;
 
-console.log(tareas);
+// console.log(tareas);
  input.value = '';
 
- crearDiv(tarea.texto, tarea.hora, tarea.fecha);
+ crearDiv(tarea.texto, tarea.hora, tarea.fecha, tarea.id);
 }
 
-function crearDiv(textTarea, horatarea, fechatarea){
+function crearDiv(textTarea, horatarea, fechatarea,tareaid){
     const cajaTareas = document.querySelector('#tareas')
     const divTarea = document.createElement('div');
     const textoTarea = document.createElement('p');
@@ -80,7 +80,8 @@ function crearDiv(textTarea, horatarea, fechatarea){
 
 
     divInferior.classList.add('inferior');
-    divTarea.classList.add('tarea')
+    divTarea.classList.add('tarea');
+    divTarea.setAttribute('id',tareaid)
     cajaTareas.appendChild(divTarea);
     divTarea.appendChild(textoTarea);
     textoTarea.textContent = textTarea;
@@ -100,6 +101,7 @@ function crearDiv(textTarea, horatarea, fechatarea){
     divBotones.appendChild(divBotonBorrar);
     divBotonBorrar.appendChild(abbrBorrar);
     spanBorrar.classList.add('borrar', 'material-symbols-outlined');
+    spanBorrar.setAttribute('id', `borrar${tareaid}`);
     spanBorrar.textContent = 'delete'
     abbrBorrar.appendChild(spanBorrar);
 
@@ -107,6 +109,7 @@ function crearDiv(textTarea, horatarea, fechatarea){
     divBotones.appendChild(divBotonEditar);
     divBotonEditar.appendChild(abbrEditar);
     spanEditar.classList.add('editar', 'material-symbols-outlined');
+    spanEditar.setAttribute('id', `editar${tareaid}`);
     spanEditar.textContent = 'edit'
     abbrEditar.appendChild(spanEditar);
     
@@ -114,12 +117,26 @@ function crearDiv(textTarea, horatarea, fechatarea){
     divBotones.appendChild(divBotonCompletado);
     divBotonCompletado.appendChild(abbrCompletado);
     spanCompletado.classList.add('Completar', 'material-symbols-outlined');
+    spanCompletado.setAttribute('id', `completar${tareaid}`);
     spanCompletado.textContent = 'event_available'
     abbrCompletado.appendChild(spanCompletado);
 
-    console.log(botonCompletar);
-
-    
+    crearConst(tareaid);    
 }
 
-// console.log(moment());
+function crearConst(id){
+    const botonBorrar = document.querySelector(`#borrar${id}`);
+    const botonEditar = document.querySelector(`#editar${id}`)
+    const botonCompletar = document.querySelector(`#completar${id}`);
+    // console.log(botonCompletar);
+    botonCompletar.addEventListener('click', function(e){
+        // console.log(e.target.id, id);
+        completarTarea(e.target.id, id);
+    })
+}
+
+function completarTarea(eid, id){
+    console.log(`Cambiando color con el id${id}`);
+    const divTarea = document.querySelectorAll('.tarea')[id-1];
+    console.log(divTarea);
+}
