@@ -95,8 +95,7 @@ button:active {
 
 .tarea {
     /* background-color: grey; */
-    background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
-    background-color: #019ad2;
+
     border-radius: 10px;
     width: 500px;
     height: auto;
@@ -108,8 +107,13 @@ button:active {
     justify-content: space-between;
 }
 
+.tarea-azul {
+    background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+    background-color: #019ad2;
+}
+
 .tarea-verde {
-    background-color: green;
+    background-color: green !important;
 }
 
 .tarea p {

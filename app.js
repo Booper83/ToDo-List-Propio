@@ -80,7 +80,7 @@ function crearDiv(textTarea, horatarea, fechatarea,tareaid){
 
 
     divInferior.classList.add('inferior');
-    divTarea.classList.add('tarea');
+    divTarea.classList.add('tarea','tarea-azul');
     divTarea.setAttribute('id',tareaid)
     cajaTareas.appendChild(divTarea);
     divTarea.appendChild(textoTarea);
@@ -136,7 +136,25 @@ function crearConst(id){
 }
 
 function completarTarea(eid, id){
-    console.log(`Cambiando color con el id${id}`);
+    // console.log(`Cambiando color con el id${id}`);
     const divTarea = document.querySelectorAll('.tarea')[id-1];
     console.log(divTarea);
+    
+    if(divTarea.classList.contains('tarea-azul')){
+        divTarea.classList.remove('tarea-azul')
+        divTarea.classList.add('tarea-verde');
+       
+        console.log('tiene azul');
+        return
+    };
+    if (divTarea.classList.contains('tarea-verde')) {
+        divTarea.classList.remove('tarea-verde')
+        divTarea.classList.add('tarea-azul');
+        console.log('tiene verde');
+        return;
+    };
+
+    
+    
+    
 }
