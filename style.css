@@ -113,7 +113,8 @@ button:active {
 }
 
 .tarea-verde {
-    background-color: green !important;
+    background: rgb(137, 195, 34);
+    background: linear-gradient(0deg, rgba(137, 195, 34, 0.41477731229210435) 0%, rgba(87, 253, 45, 0.9245812338607318) 100%);
 }
 
 .tarea p {
@@ -166,12 +167,13 @@ button:active {
 }
 
 .boton_azul {
-    background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
-    background-color: #33bdef;
+    /* background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+    background-color: #33bdef; */
 }
 
 .boton_verde {
-    background-color: green;
+    /* background: rgb(137, 195, 34); */
+    /* background: linear-gradient(0deg, rgba(137, 195, 34, 0.41477731229210435) 0%, rgba(87, 253, 45, 0.9245812338607318) 100%); */
 }
 
 .botones div span {

@@ -1,3 +1,12 @@
+document.addEventListener('DOMContentLoaded', function(){
+
+eventListeners();
+
+
+})
+
+//VARIABLES
+
 const hora = document.querySelector('#hora');
 const fecha = document.querySelector('#fecha');
 const boton = document.querySelector('#boton');
@@ -5,60 +14,71 @@ const input = document.querySelector('#input');
 
 
 
+function eventListeners(){
 
-// botonCompletar.addEventListener('click', function(e) {
-//     console.log(e);
-// });
-
-let tareas = {};
-let idTarea = 0;
-
-
-boton.addEventListener('click', function(e){
-    e.preventDefault();
     
-    // console.log(hora.textContent, fecha.textContent);
-    crearTarea(input.value);
-})
+    setInterval(() => {
+        ponerHora();
+    }, 1000);
+
+    boton.addEventListener('click', function(e) {
+        arrayTarea(e);
+    });
+
+}
 
 
+
+//ARRAY TAREAS
+
+const arrayTareas = [];
+let posicion = 0;
+
+//FUNCION PONER HORA
 
 function ponerHora(){
     hora.textContent = moment().format('HH:mm:ss');
     fecha.textContent = moment().format("DD/MM/YYYY")
-}
+};
 
-ponerHora();
+//FUNCION AÑADIR TAREA AL ARRAY
 
-setInterval(() => {
-    ponerHora();
-}, 1000);
+function arrayTarea(e){
+    e.preventDefault();
+    // console.log(input.value);
+    resetearDivs();
+    
+   
+    const tarea = {
+        texto : input.value,
+        hora : hora.textContent,
+        fecha: fecha.textContent
+    }
 
-function crearTarea(e){
- if (e.trim() === '') {
-    console.log('la tarea esta vacia');
+    arrayTareas.push(tarea);
+
+    // console.log(arrayTareas);
+
+
     input.value = '';
-    return;
- }
-//  console.log(`Has escrito algo a la hora ${hora.textContent} y fecha ${fecha.textContent}`);
-const tarea = {
-    id : idTarea + 1,
-    texto: input.value,
-    hora: hora.textContent,
-    fecha: fecha.textContent
+
+    contarArray()
 }
 
-idTarea = tarea.id;
-
-tareas[tarea.id] = tarea;
-
-console.log(tareas);
- input.value = '';
-
- crearDiv(tarea.texto, tarea.hora, tarea.fecha, tarea.id);
+function contarArray(){
+    
+    for (let i = 0; i < arrayTareas.length; i++) {
+        // crearDiv(arrayTareas[i].texto, hora, fecha, i)
+        crearDiv(arrayTareas[i].texto, arrayTareas[i].hora, arrayTareas[i].fecha, i+1)
+        
+        
+    }
 }
 
-function crearDiv(textTarea, horatarea, fechatarea,tareaid){
+
+function crearDiv(texto, hora, fecha, i){
+    
+
     const cajaTareas = document.querySelector('#tareas')
     const divTarea = document.createElement('div');
     const textoTarea = document.createElement('p');
@@ -81,18 +101,18 @@ function crearDiv(textTarea, horatarea, fechatarea,tareaid){
 
     divInferior.classList.add('inferior');
     divTarea.classList.add('tarea','tarea-azul');
-    divTarea.setAttribute('id',tareaid)
+    divTarea.setAttribute('id',i)
     cajaTareas.appendChild(divTarea);
     divTarea.appendChild(textoTarea);
-    textoTarea.textContent = textTarea;
+    textoTarea.textContent = texto;
     divTarea.appendChild(divInferior);
     hora_fecha.classList.add('hora_fecha');
     divInferior.appendChild(hora_fecha);
     spanHoraTarea.setAttribute('id', 'hora_tarea');
-    spanHoraTarea.textContent = horatarea; 
+    spanHoraTarea.textContent = hora; 
     hora_fecha.appendChild(spanHoraTarea);
     spanFechaTarea.setAttribute('id', 'fecha_tarea');
-    spanFechaTarea.textContent = fechatarea; //borrar
+    spanFechaTarea.textContent = fecha; //borrar
     hora_fecha.appendChild(spanFechaTarea);
     divBotones.classList.add('botones')
     divInferior.appendChild(divBotones);
@@ -101,7 +121,7 @@ function crearDiv(textTarea, horatarea, fechatarea,tareaid){
     divBotones.appendChild(divBotonBorrar);
     divBotonBorrar.appendChild(abbrBorrar);
     spanBorrar.classList.add('borrar', 'material-symbols-outlined');
-    spanBorrar.setAttribute('id', `borrar${tareaid}`);
+    spanBorrar.setAttribute('id', `borrar${i}`);
     spanBorrar.textContent = 'delete'
     abbrBorrar.appendChild(spanBorrar);
 
@@ -109,7 +129,7 @@ function crearDiv(textTarea, horatarea, fechatarea,tareaid){
     divBotones.appendChild(divBotonEditar);
     divBotonEditar.appendChild(abbrEditar);
     spanEditar.classList.add('editar', 'material-symbols-outlined');
-    spanEditar.setAttribute('id', `editar${tareaid}`);
+    spanEditar.setAttribute('id', `editar${i}`);
     spanEditar.textContent = 'edit'
     abbrEditar.appendChild(spanEditar);
     
@@ -117,59 +137,57 @@ function crearDiv(textTarea, horatarea, fechatarea,tareaid){
     divBotones.appendChild(divBotonCompletado);
     divBotonCompletado.appendChild(abbrCompletado);
     spanCompletado.classList.add('Completar', 'material-symbols-outlined');
-    spanCompletado.setAttribute('id', `completar${tareaid}`);
+    spanCompletado.setAttribute('id', `completar${i}`);
     spanCompletado.textContent = 'event_available'
-    abbrCompletado.appendChild(spanCompletado);
+    abbrCompletado.appendChild(spanCompletado); 
 
-    crearConst(tareaid);    
-}
-
-function crearConst(id){
-    const botonBorrar = document.querySelector(`#borrar${id}`);
-    const botonEditar = document.querySelector(`#editar${id}`)
-    const botonCompletar = document.querySelector(`#completar${id}`);
-    // console.log(botonCompletar);
-    botonCompletar.addEventListener('click', function(e){
-        // console.log(e.target.id, id);
-        completarTarea(id);
-    })
-
-    botonBorrar.addEventListener('click', function (e){
-        // console.log(e.target);
-        borrarTarea(id);
-    })
-}
-
-function completarTarea(id){
-    // console.log(`Cambiando color con el id${id}`);
-    const divTarea = document.querySelectorAll('.tarea')[id-1];
-    // console.log(divTarea);
+    botonCompletado(i);
     
-    if(divTarea.classList.contains('tarea-azul')){
-        divTarea.classList.remove('tarea-azul')
-        divTarea.classList.add('tarea-verde');
-        divTarea.lastChild.lastChild.lastChild.classList.remove('boton_azul');
-        divTarea.lastChild.lastChild.lastChild.classList.add('boton_verde');
-        console.log(divTarea.lastChild.lastChild.lastChild);
-       
-        console.log('tiene azul');
-        return;
-    };
-    if (divTarea.classList.contains('tarea-verde')) {
-        divTarea.classList.remove('tarea-verde')
-        divTarea.classList.add('tarea-azul');
-        divTarea.lastChild.lastChild.lastChild.classList.remove('boton_verde');
-        divTarea.lastChild.lastChild.lastChild.classList.add('boton_azul');
-        console.log('tiene verde');
-        return;
-    };    
 }
 
-function borrarTarea(id){
-    const tareaBorrada = tareas[id].splice(id-1,id);
-    
-    const tareaBorrar = document.querySelectorAll('.tarea')[id-1];
-    console.log(tareaBorrar);
-console.log(tareas[1]);
 
+function resetearDivs(){
+
+    if (arrayTareas.length != 0) {
+        for (let i = 0; i < arrayTareas.length; i++) {
+            const tareaBorrar = document.getElementById(i+1);
+
+            tareaBorrar.remove(); 
+            
+        }       
+    }
+
+}
+
+function botonCompletado(id){
+    const botonCompletar = document.getElementById(`completar${id}`)
+
+    botonCompletar.addEventListener('click', function(e) {
+        console.log(e.target.id.slice(9,10));
+        const tareaCompletar = document.querySelector(`#completar${id}`).parentNode.parentNode.parentNode.parentNode.parentNode;
+        console.log(tareaCompletar);
+
+        if(tareaCompletar.classList.contains('tarea-azul')){
+            tareaCompletar.classList.remove('tarea-azul')
+            tareaCompletar.classList.add('tarea-verde');
+            tareaCompletar.lastChild.lastChild.lastChild.classList.remove('boton_azul');
+            tareaCompletar.lastChild.lastChild.lastChild.classList.add('boton_verde');
+            tareaCompletar.lastChild.lastChild.lastChild.previousSibling.classList.remove('boton_azul');
+            tareaCompletar.lastChild.lastChild.firstChild.classList.remove('boton_azul');
+            // console.log(tareaCompletar.lastChild.lastChild.lastChild);
+           
+            // console.log('tiene azul');
+            return;
+        };
+        if (tareaCompletar.classList.contains('tarea-verde')) {
+            tareaCompletar.classList.remove('tarea-verde')
+            tareaCompletar.classList.add('tarea-azul');
+            tareaCompletar.lastChild.lastChild.lastChild.classList.remove('boton_verde');
+            tareaCompletar.lastChild.lastChild.lastChild.classList.add('boton_azul');
+            // console.log('tiene verde');
+            return;
+        };    
+
+        
+    })
 }
