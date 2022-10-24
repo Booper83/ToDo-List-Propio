@@ -22,7 +22,13 @@ function eventListeners(){
     }, 1000);
 
     boton.addEventListener('click', function(e) {
-        arrayTarea(e);
+        if (input.value == '') {
+            alert('El campo texto tiene que estar relleno')
+        }else {
+            tipoColor();
+            arrayTarea(e);
+
+        }
     });
 
 }
@@ -46,6 +52,7 @@ function ponerHora(){
 function arrayTarea(e){
     e.preventDefault();
     // console.log(input.value);
+    
     resetearDivs();
     
    
@@ -69,16 +76,18 @@ function contarArray(){
     
     for (let i = 0; i < arrayTareas.length; i++) {
         // crearDiv(arrayTareas[i].texto, hora, fecha, i)
-        crearDiv(arrayTareas[i].texto, arrayTareas[i].hora, arrayTareas[i].fecha, i+1)
+        crearDiv(arrayTareas[i].texto, arrayTareas[i].hora, arrayTareas[i].fecha, i+1, arrayColor[i])
         
         
     }
 }
 
 
-function crearDiv(texto, hora, fecha, i){
-    
 
+
+function crearDiv(texto, hora, fecha, i, color){
+    console.log(i-1);
+    
     const cajaTareas = document.querySelector('#tareas')
     const divTarea = document.createElement('div');
     const textoTarea = document.createElement('p');
@@ -101,6 +110,18 @@ function crearDiv(texto, hora, fecha, i){
 
     divInferior.classList.add('inferior');
     divTarea.classList.add('tarea','tarea-azul');
+    //  if (arrayTareas.length = 0) {
+    //      divTarea.classList.add('tarea-azul');
+    //  }else {
+    //      if (color == 'azul') {
+    //          divTarea.classList.add('tarea-azul');
+    //          console.log('azul');
+    //      }else {
+    //          divTarea.classList.add('tarea-verde');
+    //          console.log('verde');
+    //      }
+    //  }
+    
     divTarea.setAttribute('id',i)
     cajaTareas.appendChild(divTarea);
     divTarea.appendChild(textoTarea);
@@ -163,9 +184,9 @@ function botonCompletado(id){
     const botonCompletar = document.getElementById(`completar${id}`)
 
     botonCompletar.addEventListener('click', function(e) {
-        console.log(e.target.id.slice(9,10));
+        // console.log(e.target.id.slice(9,10));
         const tareaCompletar = document.querySelector(`#completar${id}`).parentNode.parentNode.parentNode.parentNode.parentNode;
-        console.log(tareaCompletar);
+        // console.log(tareaCompletar);
 
         if(tareaCompletar.classList.contains('tarea-azul')){
             tareaCompletar.classList.remove('tarea-azul')
@@ -191,3 +212,29 @@ function botonCompletado(id){
         
     })
 }
+
+let arrayColor = [];
+
+
+
+function tipoColor(e){
+    arrayColor = [];
+    const colorTarea = document.querySelectorAll('.tarea');
+
+    if (colorTarea.length != 0) {
+        for (let i = 0; i < colorTarea.length; i++) {
+            const divColor = colorTarea[i];
+
+            if (divColor.classList[1] == 'tarea-azul') {
+                arrayColor.push('azul')
+                // console.log(arrayColor);
+            } else {
+                arrayColor.push('verde');
+                // console.log(arrayColor);
+            }            
+        }
+        console.log(arrayColor);
+    }  
+    
+}
+
